@@ -1,4 +1,4 @@
-from sqlalchemy import (Column, Integer, String, ARRAY)
+from sqlalchemy import (Column, Integer, String, ARRAY, ForeignKey)
 from db import Base
 
 
@@ -7,4 +7,5 @@ class Cat(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(50))
-    color = Column(ARRAY(String))
+    colors = Column(ARRAY(String))
+    user_id = Column(Integer, ForeignKey('users.id'))

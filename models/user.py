@@ -1,4 +1,5 @@
 from sqlalchemy import (Column, Integer, String)
+from sqlalchemy.orm import relationship
 from passlib.hash import bcrypt
 from itsdangerous import (
     TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
@@ -14,6 +15,7 @@ class User(Base):
     email = Column(String(255), unique=True, nullable=False)
     password = Column(String(255), nullable=False)
     username = Column(String(255), unique=True, nullable=False)
+    cats = relationship('Cat', backref='owner')
 
     def __init__(self, email, password, username):
         self.email = email
